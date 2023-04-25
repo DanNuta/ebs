@@ -13,10 +13,11 @@ export const VProduct: React.FC<IProps> = ({ item }) => {
   const { addProduct, removeItem, card } = useContext(ProductsContext) as IContext;
 
   return (
-    <tr className={card.some((p) => p.id === item.id) ? `${prdStyle.card_ites}` : 'no_card'}>
-      <td className={style.td}>{item.category.name}</td>
-      <td className={style.td}>{item.name}</td>
-      <td className={style.td}>{item.price}</td>
+    <tr className={card.some((p) => p.id === item.id) ? `${prdStyle.card_ites}` : `${style.tr}`}>
+      <td>{item.category.name}</td>
+      <td>{item.name}</td>
+      <td>{item.price}</td>
+      <td>1</td>
       <td className={style.td}>
         <button onClick={() => addProduct(item)}>+</button> Select <button onClick={() => removeItem(item)}>-</button>
       </td>

@@ -20,12 +20,12 @@ export const Card = () => {
       {lengthCard ? (
         <table className={style.table}>
           <thead>
-            <tr className={style.th}>
-              <td className={style.td}>Category</td>
-              <td className={style.td}>Name</td>
-              <td className={style.td}>Quantity</td>
-              <td className={style.td}>Price</td>
-              <td className={style.td}>Actions</td>
+            <tr className={style.tr}>
+              <td>Category</td>
+              <td>Name</td>
+              <td>Quantity</td>
+              <td>Price</td>
+              <td>Actions</td>
             </tr>
           </thead>
 

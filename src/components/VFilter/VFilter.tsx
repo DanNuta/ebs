@@ -1,7 +1,7 @@
 import { BASE_URL_CATEGORY } from './config';
 import { useFetchProducts } from '../../hooks/useFetchProducts';
-import { Category, Product, IFetchCategory } from '../../types';
-import React, { useContext } from 'react';
+import { Product, IFetchCategory } from '../../types';
+import React from 'react';
 
 interface IProps {
   products: Product[];
@@ -16,6 +16,9 @@ export const VFilter: React.FC<IProps> = ({ products, onFilterFn, onSortProducts
     onFilterFn(e.target.value);
   }
 
+  const filterItems = data.map((item) => item.id);
+  const allFilterItems = ['all', ...filterItems];
+
   return (
     <div>
       {pendign && <h1>Loading...</h1>}
@@ -28,10 +31,10 @@ export const VFilter: React.FC<IProps> = ({ products, onFilterFn, onSortProducts
 
       <div>
         <select onChange={(e) => filterCategoryFn(e)} name="category">
-          {data.map((item, i) => {
+          {allFilterItems.map((item, i) => {
             return (
-              <option key={i} value={item.id}>
-                {item.id}
+              <option key={i} value={item}>
+                {item}
               </option>
             );
           })}

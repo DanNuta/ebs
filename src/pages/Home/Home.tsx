@@ -11,6 +11,26 @@ export const Home = () => {
   const { data, pendign, error }: IFetchProducts = useFetchProducts(`${BASE_URL_PRODUCTS}`);
 
   function filterProducts(name: string) {
+    switch (name) {
+      case 'all': {
+        setFilterData((prev) => {
+          return (prev = data);
+        });
+        return true;
+      }
+
+      case name: {
+        const filterP = data.filter((p) => p.category.id === name);
+        setFilterData((prev) => {
+          return filterP;
+        });
+        break;
+      }
+
+      default:
+        return true;
+    }
+
     const filterP = data.filter((p) => p.category.id === name);
     setFilterData((prev) => {
       return filterP;
@@ -45,11 +65,12 @@ export const Home = () => {
       <div>
         <table className={style.table}>
           <thead>
-            <tr className={style.th}>
-              <td className={style.td}>Category</td>
-              <td className={style.td}>Name</td>
-              <td className={style.td}>Price</td>
-              <td className={style.td}>Actions</td>
+            <tr className={style.tr}>
+              <td>Category</td>
+              <td>Name</td>
+              <td>Price</td>
+              <td>Quantity</td>
+              <td>Actions</td>
             </tr>
           </thead>
           <tbody>
