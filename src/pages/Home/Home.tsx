@@ -7,6 +7,7 @@ import { BASE_URL_PRODUCTS } from './config';
 
 export const Home = () => {
   const [filterData, setFilterData] = useState<Product[] | []>([]);
+
   const { data, pendign, error }: IFetchProducts = useFetchProducts(`${BASE_URL_PRODUCTS}`);
 
   function filterProducts(name: string) {
@@ -37,6 +38,7 @@ export const Home = () => {
   return (
     <div>
       {pendign && <h1>Loading...</h1>}
+      {error && <h1>{error}</h1>}
 
       <VFilter onSortProducts={sortProducts} onFilterFn={filterProducts} products={data} />
 
