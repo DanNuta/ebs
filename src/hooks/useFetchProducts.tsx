@@ -7,7 +7,7 @@ export const useFetchProducts = (url: string) => {
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [url]);
 
   async function getData() {
     setPending(true);

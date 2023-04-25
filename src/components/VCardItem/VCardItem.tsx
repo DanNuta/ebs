@@ -17,9 +17,8 @@ export const VCardItem: React.FC<IProps> = ({ item }) => {
       <td className={style.td}>{item.quantity}</td>
       <td className={style.td}>{item.price}</td>
       <td className={style.td}>
-        <button onClick={() => changeQty('+', item.id)}>+</button>{' '}
-        <button onClick={() => removeItem(item)}>Remove</button>{' '}
-        <button onClick={() => changeQty('-', item.id)}>-</button>
+        <button onClick={() => changeQty('+', item)}>+</button> <button onClick={() => removeItem(item)}>Remove</button>{' '}
+        <button onClick={() => changeQty('-', item)}>-</button>
       </td>
     </tr>
   );

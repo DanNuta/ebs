@@ -5,5 +5,5 @@ export interface IContext {
   card: ICard[] | [];
   addProduct: (data: Product) => void;
   removeItem: (data: Product) => void;
-  changeQty: (sign: string, id: number) => void;
+  changeQty: (sign: string, data: Product) => void;
 }

@@ -6,8 +6,14 @@ export const ProductsContext = createContext<IContext | null>(null);
 export const ProductsProvider: React.FC = (props) => {
   const [card, setCard] = useState<ICard[] | []>([]);
 
+  function incremnetQty(prev: ICard[], curentData: Product) {
+    return prev.map((p) => (p.id === curentData.id ? { ...p, quantity: p.quantity + 1 } : p));
+  }
+
   function addProduct(data: Product) {
     setCard((prev) => {
+      const elementExist = prev.some((p) => p.id === data.id);
+      if (elementExist) return incremnetQty(prev, data);
       return [...prev, { ...data, quantity: 1 }];
     });
   }
@@ -19,16 +25,16 @@ export const ProductsProvider: React.FC = (props) => {
     });
   }
 
-  function changeQty(sign: string, id: number) {
+  function changeQty(sign: string, data: Product) {
     if (sign === '+') {
       setCard((prev) => {
-        return prev.map((p) => (p.id === id ? { ...p, quantity: p.quantity + 1 } : p));
+        return incremnetQty(prev, data);
       });
     }
 
     if (sign === '-') {
       setCard((prev) => {
-        return prev.map((p) => (p.id === id ? { ...p, quantity: p.quantity > 1 ? p.quantity - 1 : 1 } : p));
+        return prev.map((p) => (p.id === data.id ? { ...p, quantity: p.quantity > 1 ? p.quantity - 1 : 1 } : p));
       });
     }
   }

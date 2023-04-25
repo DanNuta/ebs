@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
-import { VProduct } from 'components';
+import React from 'react';
 
-//import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link } from 'react-router-dom';
 import { Home, Card } from './pages';
 
 export const ROUTER_PATH = {
@@ -12,7 +11,7 @@ export const ROUTER_PATH = {
 const App = () => {
   return (
     <div>
-      {/* <nav>
+      <nav>
         <ul>
           <li>
             <Link to={`${ROUTER_PATH.home}`}>Home</Link>
@@ -26,7 +25,7 @@ const App = () => {
       <Routes>
         <Route path={`${ROUTER_PATH.home}`} element={<Home />} />
         <Route path={`${ROUTER_PATH.card}`} element={<Card />} />
-      </Routes> */}
+      </Routes>
     </div>
   );
 };
