@@ -27,7 +27,7 @@ export const VFilter: React.FC<IProps> = ({ products, onFilterFn, onSortProducts
       </div>
 
       <div>
-        <select onChange={(e) => filterCategoryFn(e)} name="category" id="">
+        <select onChange={(e) => filterCategoryFn(e)} name="category">
           {data.map((item, i) => {
             return (
               <option key={i} value={item.id}>
