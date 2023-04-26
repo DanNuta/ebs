@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Product, IFetchProducts } from '../../types';
-import { useFetchProducts } from '../../hooks/useFetchProducts';
+import { useState, useEffect } from 'react';
+
+import { Product, IFetchProducts } from 'types';
+import { useFetchProducts } from 'hooks/useFetchProducts';
 import { VProduct, VFilter } from 'components';
+
 import style from './style.module.css';
 import { BASE_URL_PRODUCTS } from './config';
+
+//outside folder/files
 
 export const Home = () => {
   const [filterData, setFilterData] = useState<Product[] | []>([]);
@@ -56,6 +60,8 @@ export const Home = () => {
     });
   }
 
+  console.log(data);
+
   function removeQty(item: Product) {
     setFilterData((prev) => {
       return prev.map((p) => (p.id === item.id ? { ...item, quantity: 0 } : p));
@@ -68,9 +74,9 @@ export const Home = () => {
       return item;
     });
 
-    setFilterData((prev) => {
-      return addQty;
-    });
+    console.log('RENDER');
+
+    setFilterData(addQty);
   }, [data]);
 
   return (

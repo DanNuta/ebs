@@ -1,7 +1,9 @@
-import { BASE_URL_CATEGORY } from './config';
-import { useFetchProducts } from '../../hooks/useFetchProducts';
-import { Product, IFetchCategory } from '../../types';
 import React from 'react';
+
+import { useFetchProducts } from 'hooks';
+import { Product, IFetchCategory } from 'types';
+
+import { BASE_URL_CATEGORY } from './config';
 
 interface IProps {
   products: Product[];

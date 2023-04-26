@@ -1,7 +1,9 @@
-import React, { useContext } from 'react';
-import { VCardItem } from '../../components';
-import { ProductsContext } from '../../context/Products.context';
-import { IContext } from '../../types';
+import { useContext } from 'react';
+
+import { VCardItem } from 'components';
+import { ProductsContext } from 'context';
+import { IContext } from 'types';
+
 import style from './style.module.css';
 
 export const Card = () => {

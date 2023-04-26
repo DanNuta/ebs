@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
-import { ICard, Product, IContext } from '../types';
+
+import { ICard, Product, IContext } from 'types';
 
 export const ProductsContext = createContext<IContext | null>(null);
 

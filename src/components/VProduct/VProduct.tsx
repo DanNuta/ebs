@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import style from './style.module.css';
-import { Product, IContext } from '../../types';
-import { ProductsContext } from '../../context/Products.context';
 
+import { Product, IContext } from 'types';
+import { ProductsContext } from 'context/Products.context';
+
+import style from './style.module.css';
 import prdStyle from './style.module.css';
 
 interface IProps {

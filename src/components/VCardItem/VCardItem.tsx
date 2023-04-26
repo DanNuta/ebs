@@ -1,7 +1,9 @@
 import React, { useContext } from 'react';
+
+import { IContext, ICard } from 'types';
+import { ProductsContext } from 'context';
+
 import style from './style.module.css';
-import { IContext, ICard } from '../../types';
-import { ProductsContext } from '../../context/Products.context';
 
 interface IProps {
   item: ICard;
