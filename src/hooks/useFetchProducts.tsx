@@ -9,7 +9,7 @@ export const useFetchProducts = (url: string) => {
     getData();
   }, [url]);
 
-  async function getData() {
+  async function getData<T>(): Promise<void> { 
     setPending(true);
     try {
       const res: Response = await fetch(url);

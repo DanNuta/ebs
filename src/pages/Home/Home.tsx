@@ -5,22 +5,23 @@ import { VProduct, VFilter } from 'components';
 import style from './style.module.css';
 import { BASE_URL_PRODUCTS } from './config';
 
+
 export const Home = () => {
   const [filterData, setFilterData] = useState<Product[] | []>([]);
-
   const { data, pendign, error }: IFetchProducts = useFetchProducts(`${BASE_URL_PRODUCTS}`);
 
+ 
   function filterProducts(name: string) {
     switch (name) {
       case 'all': {
         setFilterData((prev) => {
-          return (prev = data);
+          return (data);
         });
         return true;
       }
 
       case name: {
-        const filterP = data.filter((p) => p.category.id === name);
+        const filterP = data.filter((p) => p.category?.id === name);
         setFilterData((prev) => {
           return filterP;
         });
@@ -31,7 +32,7 @@ export const Home = () => {
         return true;
     }
 
-    const filterP = data.filter((p) => p.category.id === name);
+    const filterP = data.filter((p) => p.category?.id === name);
     setFilterData((prev) => {
       return filterP;
     });
@@ -51,8 +52,51 @@ export const Home = () => {
     }
   }
 
+
+  function changeQty(item: Product){
+
+    setFilterData(prev => {
+      return prev.map((p) => p.id === item.id ? {...item, quantity: p.quantity!+1} : p);
+    })
+  }
+
+  function removeQty(item: Product){
+    setFilterData(prev => {
+      return prev.map((p) => p.id === item.id ? {...item, quantity: 0} : p);
+    })
+  }
+
+
+  function stringifyObjectKeyValues<T extends Record<string, any>>(obj: T) {
+    return Object.keys(obj).reduce((acc, key) =>  ({
+      ...acc,
+      [key]: JSON.stringify(obj[key])
+    }), {} as { [K in keyof T]: string })
+  }
+
+  const dataElement = {
+    name: "dan",
+    "age": 18,
+    12: 12
+  }
+
+
+ const ele = stringifyObjectKeyValues(dataElement);
+
+ console.log(ele)
+
+
+
   useEffect(() => {
-    setFilterData(data);
+    const addQty: Product[] = data.map((item) => {
+      item["quantity"] = 0;
+      return item
+    });
+
+    setFilterData(prev => {
+      return addQty;
+    });
+
   }, [data]);
 
   return (
@@ -75,7 +119,12 @@ export const Home = () => {
           </thead>
           <tbody>
             {filterData.map((item) => {
-              return <VProduct key={item.name} item={item} />;
+              return <VProduct 
+                        key={item.name} 
+                        item={item}
+                        onChangeQty={changeQty}
+                        onRemoveQty={removeQty}
+                         />;
             })}
           </tbody>
         </table>
