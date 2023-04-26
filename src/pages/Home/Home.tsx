@@ -3,50 +3,43 @@ import { useState, useEffect } from 'react';
 import { Product, IFetchProducts } from 'types';
 import { useFetchProducts } from 'hooks/useFetchProducts';
 import { VProduct, VFilter } from 'components';
+import { filterProductsUtils } from 'utils';
 
 import style from './style.module.css';
 
 export const Home = () => {
   const [filterData, setFilterData] = useState<Product[] | []>([]);
-  const { data, pendign, error }: IFetchProducts = useFetchProducts(`${process.env.REACT_APP_PRODUCTS_ENDPOINT}`);
+  const { data, pending, error }: IFetchProducts = useFetchProducts(`${process.env.REACT_APP_PRODUCTS_ENDPOINT}`);
 
   function filterProducts(name: string) {
     switch (name) {
       case 'all': {
-        setFilterData((prev) => {
-          return data;
-        });
-        return true;
+        setFilterData(data);
+        break;
       }
 
       case name: {
-        const filterP = data.filter((p) => p.category?.id === name);
-        setFilterData((prev) => {
-          return filterP;
-        });
+        console.log(name);
+        const dataFilter = filterProductsUtils(data, name);
+        setFilterData(dataFilter);
         break;
       }
 
       default:
         return true;
     }
-
-    const filterP = data.filter((p) => p.category?.id === name);
-    setFilterData((prev) => {
-      return filterP;
-    });
   }
 
   function sortProducts(type: string) {
     if (type === 'asc') {
       setFilterData((prev) => {
-        return [...prev].sort((a, b) => b.price - a.price);
+        return [...prev].sort((a, b) => a.price - b.price);
       });
     }
 
     if (type === 'desc') {
       setFilterData((prev) => {
-        return [...prev].sort((a, b) => a.price - b.price);
+        return [...prev].sort((a, b) => b.price - a.price);
       });
     }
   }
@@ -57,7 +50,7 @@ export const Home = () => {
 
   return (
     <div>
-      {pendign && <h1>Loading...</h1>}
+      {pending && <h1>Loading...</h1>}
       {error && <h1>{error}</h1>}
 
       <VFilter onSortProducts={sortProducts} onFilterFn={filterProducts} products={data} />

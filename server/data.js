@@ -65,27 +65,27 @@ const data = [
   // MEAL
   {
     name: 'Beef',
-    category: categories.GRAIN,
+    category: categories.MEAL,
     price: 5.2,
   },
   {
     name: 'Lamb',
-    category: categories.GRAIN,
+    category: categories.MEAL,
     price: 7.5,
   },
   {
     name: 'Veal',
-    category: categories.GRAIN,
+    category: categories.MEAL,
     price: 6.0,
   },
   {
     name: 'Pork',
-    category: categories.GRAIN,
+    category: categories.MEAL,
     price: 4.2,
   },
   {
     name: 'Kangaroo',
-    category: categories.GRAIN,
+    category: categories.MEAL,
     price: 10.5,
   },
 

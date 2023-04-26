@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 export const useFetchProducts = (url: string) => {
   const [data, setData] = useState<[]>([]);
-  const [pendign, setPending] = useState(false);
+  const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export const useFetchProducts = (url: string) => {
       const res: Response = await fetch(url);
 
       if (!res.ok) {
-        setError('Cerere gresita');
+        setError('Bad request');
         setPending(false);
       }
 
@@ -30,5 +30,5 @@ export const useFetchProducts = (url: string) => {
     }
   }
 
-  return { data, pendign, error };
+  return { data, pending, error };
 };

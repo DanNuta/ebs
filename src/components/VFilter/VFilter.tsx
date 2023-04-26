@@ -10,7 +10,7 @@ interface IProps {
 }
 
 export const VFilter: React.FC<IProps> = ({ products, onFilterFn, onSortProducts }) => {
-  const { data, pendign, error }: IFetchCategory = useFetchProducts(`${process.env.REACT_APP_CATEGORY_ENDPOINT}`);
+  const { data, pending, error }: IFetchCategory = useFetchProducts(`${process.env.REACT_APP_CATEGORY_ENDPOINT}`);
 
   function filterCategoryFn(e: React.ChangeEvent<HTMLSelectElement>) {
     onFilterFn(e.target.value);
@@ -21,12 +21,12 @@ export const VFilter: React.FC<IProps> = ({ products, onFilterFn, onSortProducts
 
   return (
     <div>
-      {pendign && <h1>Loading...</h1>}
+      {pending && <h1>Loading...</h1>}
       {error && <h1>{error}</h1>}
 
       <div>
-        <button onClick={() => onSortProducts('asc')}>Desc</button>
-        <button onClick={() => onSortProducts('desc')}>Cresc</button>
+        <button onClick={() => onSortProducts('asc')}>Asc</button>
+        <button onClick={() => onSortProducts('desc')}>Desc</button>
       </div>
 
       <div>

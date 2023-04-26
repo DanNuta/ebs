@@ -1,7 +1,7 @@
 import { Product, Category } from './products';
 
 interface IFetch {
-  pendign: boolean;
+  pending: boolean;
   error: string | null;
 }
 
