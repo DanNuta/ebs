@@ -19,7 +19,6 @@ export const Home = () => {
       }
 
       case name: {
-        console.log(name);
         const dataFilter = filterProductsUtils(data, name);
         setFilterData(dataFilter);
         break;
