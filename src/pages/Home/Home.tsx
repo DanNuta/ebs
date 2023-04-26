@@ -5,17 +5,15 @@ import { VProduct, VFilter } from 'components';
 import style from './style.module.css';
 import { BASE_URL_PRODUCTS } from './config';
 
-
 export const Home = () => {
   const [filterData, setFilterData] = useState<Product[] | []>([]);
   const { data, pendign, error }: IFetchProducts = useFetchProducts(`${BASE_URL_PRODUCTS}`);
 
- 
   function filterProducts(name: string) {
     switch (name) {
       case 'all': {
         setFilterData((prev) => {
-          return (data);
+          return data;
         });
         return true;
       }
@@ -52,51 +50,29 @@ export const Home = () => {
     }
   }
 
-
-  function changeQty(item: Product){
-
-    setFilterData(prev => {
-      return prev.map((p) => p.id === item.id ? {...item, quantity: p.quantity!+1} : p);
-    })
+  function changeQty(item: Product) {
+    setFilterData((prev) => {
+      return prev.map((p) => (p.id === item.id ? { ...item, quantity: p.quantity! + 1 } : p));
+    });
   }
 
-  function removeQty(item: Product){
-    setFilterData(prev => {
-      return prev.map((p) => p.id === item.id ? {...item, quantity: 0} : p);
-    })
+  function removeQty(item: Product) {
+    setFilterData((prev) => {
+      return prev.map((p) => (p.id === item.id ? { ...item, quantity: 0 } : p));
+    });
   }
 
-
-  function stringifyObjectKeyValues<T extends Record<string, any>>(obj: T) {
-    return Object.keys(obj).reduce((acc, key) =>  ({
-      ...acc,
-      [key]: JSON.stringify(obj[key])
-    }), {} as { [K in keyof T]: string })
-  }
-
-  const dataElement = {
-    name: "dan",
-    "age": 18,
-    12: 12
-  }
-
-
- const ele = stringifyObjectKeyValues(dataElement);
-
- console.log(ele)
-
-
+  console.log(ele);
 
   useEffect(() => {
     const addQty: Product[] = data.map((item) => {
-      item["quantity"] = 0;
-      return item
+      item['quantity'] = 0;
+      return item;
     });
 
-    setFilterData(prev => {
+    setFilterData((prev) => {
       return addQty;
     });
-
   }, [data]);
 
   return (
@@ -119,12 +95,7 @@ export const Home = () => {
           </thead>
           <tbody>
             {filterData.map((item) => {
-              return <VProduct 
-                        key={item.name} 
-                        item={item}
-                        onChangeQty={changeQty}
-                        onRemoveQty={removeQty}
-                         />;
+              return <VProduct key={item.name} item={item} onChangeQty={changeQty} onRemoveQty={removeQty} />;
             })}
           </tbody>
         </table>

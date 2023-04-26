@@ -8,5 +8,5 @@ export interface Product {
   category: Category;
   price: number;
   id: number;
-  quantity?: number
+  quantity?: number;
 }

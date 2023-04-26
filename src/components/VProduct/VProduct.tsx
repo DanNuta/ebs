@@ -8,25 +8,21 @@ import prdStyle from './style.module.css';
 interface IProps {
   item: Product;
   onChangeQty: (data: Product) => void;
-  onRemoveQty: (data: Product) => void
+  onRemoveQty: (data: Product) => void;
 }
 
 export const VProduct: React.FC<IProps> = ({ item, onChangeQty, onRemoveQty }) => {
   const { addProduct, removeItem, card } = useContext(ProductsContext) as IContext;
 
-
-
-  function changeQty(item: Product){
-    addProduct(item)
+  function changeQty(item: Product) {
+    addProduct(item);
     onChangeQty(item);
   }
 
-
-  function removeItemFn(item: Product){
+  function removeItemFn(item: Product) {
     removeItem(item);
     onRemoveQty(item);
   }
-
 
   return (
     <tr className={card.some((p) => p.id === item.id) ? `${prdStyle.card_ites} ${style.tr}` : `${style.tr}`}>
