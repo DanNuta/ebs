@@ -62,8 +62,6 @@ export const Home = () => {
     });
   }
 
-  console.log(ele);
-
   useEffect(() => {
     const addQty: Product[] = data.map((item) => {
       item['quantity'] = 0;
