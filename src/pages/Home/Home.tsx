@@ -5,13 +5,10 @@ import { useFetchProducts } from 'hooks/useFetchProducts';
 import { VProduct, VFilter } from 'components';
 
 import style from './style.module.css';
-import { BASE_URL_PRODUCTS } from './config';
-
-//outside folder/files
 
 export const Home = () => {
   const [filterData, setFilterData] = useState<Product[] | []>([]);
-  const { data, pendign, error }: IFetchProducts = useFetchProducts(`${BASE_URL_PRODUCTS}`);
+  const { data, pendign, error }: IFetchProducts = useFetchProducts(`${process.env.REACT_APP_PRODUCTS_ENDPOINT}`);
 
   function filterProducts(name: string) {
     switch (name) {
@@ -54,29 +51,8 @@ export const Home = () => {
     }
   }
 
-  function changeQty(item: Product) {
-    setFilterData((prev) => {
-      return prev.map((p) => (p.id === item.id ? { ...item, quantity: p.quantity! + 1 } : p));
-    });
-  }
-
-  console.log(data);
-
-  function removeQty(item: Product) {
-    setFilterData((prev) => {
-      return prev.map((p) => (p.id === item.id ? { ...item, quantity: 0 } : p));
-    });
-  }
-
   useEffect(() => {
-    const addQty: Product[] = data.map((item) => {
-      item['quantity'] = 0;
-      return item;
-    });
-
-    console.log('RENDER');
-
-    setFilterData(addQty);
+    setFilterData(data);
   }, [data]);
 
   return (
@@ -93,13 +69,12 @@ export const Home = () => {
               <td>Category</td>
               <td>Name</td>
               <td>Price</td>
-              <td>Quantity</td>
               <td>Actions</td>
             </tr>
           </thead>
           <tbody>
             {filterData.map((item) => {
-              return <VProduct key={item.name} item={item} onChangeQty={changeQty} onRemoveQty={removeQty} />;
+              return <VProduct key={item.name} item={item} />;
             })}
           </tbody>
         </table>

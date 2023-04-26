@@ -8,21 +8,17 @@ import prdStyle from './style.module.css';
 
 interface IProps {
   item: Product;
-  onChangeQty: (data: Product) => void;
-  onRemoveQty: (data: Product) => void;
 }
 
-export const VProduct: React.FC<IProps> = ({ item, onChangeQty, onRemoveQty }) => {
+export const VProduct: React.FC<IProps> = ({ item }) => {
   const { addProduct, removeItem, card } = useContext(ProductsContext) as IContext;
 
   function changeQty(item: Product) {
     addProduct(item);
-    onChangeQty(item);
   }
 
   function removeItemFn(item: Product) {
     removeItem(item);
-    onRemoveQty(item);
   }
 
   return (
@@ -30,7 +26,6 @@ export const VProduct: React.FC<IProps> = ({ item, onChangeQty, onRemoveQty }) =
       <td>{item.category?.name}</td>
       <td>{item.name}</td>
       <td>{item.price}</td>
-      <td>{item.quantity}</td>
       <td className={style.td}>
         <button onClick={() => changeQty(item)}>+</button> Select <button onClick={() => removeItemFn(item)}>-</button>
       </td>

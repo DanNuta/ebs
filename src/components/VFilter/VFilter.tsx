@@ -3,8 +3,6 @@ import React from 'react';
 import { useFetchProducts } from 'hooks';
 import { Product, IFetchCategory } from 'types';
 
-import { BASE_URL_CATEGORY } from './config';
-
 interface IProps {
   products: Product[];
   onFilterFn: (name: string) => void;
@@ -12,7 +10,7 @@ interface IProps {
 }
 
 export const VFilter: React.FC<IProps> = ({ products, onFilterFn, onSortProducts }) => {
-  const { data, pendign, error }: IFetchCategory = useFetchProducts(`${BASE_URL_CATEGORY}`);
+  const { data, pendign, error }: IFetchCategory = useFetchProducts(`${process.env.REACT_APP_CATEGORY_ENDPOINT}`);
 
   function filterCategoryFn(e: React.ChangeEvent<HTMLSelectElement>) {
     onFilterFn(e.target.value);
